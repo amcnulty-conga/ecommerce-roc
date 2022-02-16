@@ -1,0 +1,7 @@
+@import 'variables';
+
+.App {
+  height: calc(100vh - 58px);
+  overflow: hidden;
+  margin-top: $bodyTopMargin;
+}

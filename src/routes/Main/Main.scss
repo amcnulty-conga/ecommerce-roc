@@ -1,0 +1,12 @@
+@import 'variables';
+
+.Main {
+  width: 100%;
+  height: calc(100vh - 107px);
+  overflow: auto;
+  .mainContentCard {
+    border-width: 1px;
+    border-style: solid;
+    border-color: $containerBorder;
+  }
+}

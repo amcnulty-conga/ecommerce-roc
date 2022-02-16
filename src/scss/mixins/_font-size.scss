@@ -1,0 +1,7 @@
+@mixin font-size($size: 16) {
+  font-size: ($size / 16) + rem;
+}
+
+@function pixel-to-rem($value) {
+  @return $value / (16 * $fontSizeModifier/100%) + rem;
+}

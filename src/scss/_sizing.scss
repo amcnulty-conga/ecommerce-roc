@@ -1,0 +1,37 @@
+// All sizing related variables will be stored here.
+// Use rem values when defining a text size that needs to scale with browser settings.
+// Use pixel values for spacing.
+@import 'mixins/font-size';
+
+// Global font size modifier for setting the default font size.
+// This will not change any fonts that have been set with pixel-to-rem functions only default unset fonts will be changed.
+// If users want to change font size they can use browser settings to adjust font size and it will adjust all sizing.
+// Examples: 1 = 100% is 16 pixels; .875 = 87.5% is 14 pixels.
+$fontSizeModifier: 87.5%;
+
+// Buttons
+
+// Side padding
+$pageSidePadding: 14px;
+
+// Header
+$headerHeight: pixel-to-rem(49);
+
+// Action Bar
+$actionBarHeight: pixel-to-rem(58);
+
+// Body
+$bodyTopMargin: pixel-to-rem(58);
+$bodyHeight: calc(100vh - 107px);
+
+// Vertical Nav
+$verticalNavExpandedWidth: 252px;
+$verticalNavCollapsedWidth: 50px;
+
+// Product Card
+$productCardHeight: pixel-to-rem(200);
+$productCardWidth: 350px;
+
+// Control Bar
+
+// Main Content Tabs

@@ -1,0 +1,30 @@
+@import 'variables';
+@import '~bootstrap/scss/functions';
+
+// Place bootstrap overrides in this file
+
+//************************//
+//                        //
+//         Fonts          //
+//                        //
+//************************//
+$font-size-root: $fontSizeModifier;
+$font-family-base: 'Open Sans';
+
+
+//************************//
+//                        //
+//        Colors          //
+//                        //
+//************************//
+$body-color: $textDefault;
+$body-bg: $bodyBackground;
+
+
+//************************//
+//                        //
+//        Buttons         //
+//                        //
+//************************//
+$btn-focus-width: 0px;
+$btn-focus-box-shadow: none;

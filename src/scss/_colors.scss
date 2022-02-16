@@ -1,0 +1,60 @@
+// All color variables will be stored here.
+
+//**-- Phoenix design system colors --**\\
+// Component colors
+$pds-primary: #0170EF;
+$pds-primary-hover: #003DBC;
+$pds-primary-active: #0024A3;
+$pds-negative: #E10505;
+$pds-negative-hover: #AE0000;
+$pds-negative-active: #950000;
+$pds-secondary: #657888;
+$pds-secondary-hover: #4C5F6F;
+$pds-secondary-active: #324555;
+$pds-positive: #00850D;
+$pds-positive-hover: #005200;
+$pds-positive-active: #003900;
+
+$pds-primary-background: #E4F7FF;
+$pds-warning-background: #FFFFA0;
+$pds-positive-background: #CCFFD9;
+$pds-negative-background: #FFD1D1;
+
+$pds-global-header: #EEF4F8;
+$pds-global-header-hover: #D0DBDF;
+$pds-section-header: #E2EBF2;
+
+// Extended colors
+$pds-blue-8: #000070;
+$pds-blue-4: #34A3FF;
+$pds-red-9: #620000;
+$pds-red-5: #FF3838;
+$pds-green-8: #000600;
+$pds-green-4: #33B840;
+$pds-yellow-3: #FFFF6D;
+$pds-space-9: #17334B;
+$pds-space-5: #8E9BA7;
+$pds-space-4: #A8B2BB;
+$pds-space-3: #C6CDD2;
+$pds-space-2: #E6EAEE;
+$pds-space-1: #EFF2F4;
+$pds-space-0: #FBFBFB;
+$pds-pink-3: #FF8BB6;
+$pds-orange-3: #FFA96F;
+$pds-olive-3: #958F37;
+$pds-turquoise-3: #409BA3;
+$pds-teal-3: #49A296;
+$pds-sky-2: #9FBEFF;
+$pds-violet-5: #42327B;
+$pds-purple-4: #4C0A66;
+
+// Text specific colors
+// Default color to be applied to whole application if no color is specifically set
+$textDefault: #072034;
+$text-disabled: $pds-space-5;
+
+// Other variables for set color uses
+$inputBorder: $pds-space-4;
+$containerBorder: $pds-space-3;
+$rowHover: $pds-space-2;
+$bodyBackground: $pds-space-1;

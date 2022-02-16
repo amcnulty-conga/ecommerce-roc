@@ -1,0 +1,12 @@
+@import 'variables';
+
+.ActionBar {
+  position: fixed;
+  width: 100%;
+  top: $headerHeight;
+  height: $actionBarHeight;
+  border-width: 1px 0px 1px 0px;
+  border-color: $containerBorder;
+  border-style: solid;
+  padding: 0px $pageSidePadding 0px $pageSidePadding;
+}

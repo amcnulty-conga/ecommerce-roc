@@ -1,0 +1,10 @@
+@import 'variables';
+
+.VerticalNav {
+  width: $verticalNavExpandedWidth;
+  height: $bodyHeight;
+  border-width: 0px 1px 0px 0px;
+  border-color: $containerBorder;
+  border-style: solid;
+  padding: 0px $pageSidePadding 0px $pageSidePadding;
+}

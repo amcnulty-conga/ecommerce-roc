@@ -1,0 +1,58 @@
+@import 'variables';
+
+.ProductCard {
+  border-width: 1px;
+  border-style: solid;
+  border-color: $containerBorder;
+  width: $productCardWidth;
+  .productCardBody {
+    padding: 12px;
+    border-bottom: 1px solid $containerBorder;
+    height: pixel-to-rem(330);
+    overflow-y: hidden;
+    .productTitle {
+      font-size: pixel-to-rem(16);
+    }
+    .productImage {
+      height: pixel-to-rem(156);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .productDescription {
+      font-size: pixel-to-rem(13);
+    }
+    .productPrice {
+      label, span {
+        font-size: pixel-to-rem(12);
+        font-weight: 600;
+      }
+    }
+    .allPrices {
+      span {
+        font-size: pixel-to-rem(12);
+        font-weight: 600;
+      }
+      svg {
+        cursor: pointer;
+      }
+    }
+  }
+  .productCardFooter {
+    margin: 12px 0px;;
+    label {
+      font-size: pixel-to-rem(12);
+    }
+    input.form-control {
+      width: 65px;
+      height: pixel-to-rem(32);
+    }
+    .btn {
+      max-width: calc(50%);
+      height: pixel-to-rem(32);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
