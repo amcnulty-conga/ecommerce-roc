@@ -1,10 +1,92 @@
 @import 'variables';
 
 .VerticalNav {
+  position: relative;
+  flex-shrink: 0;
   width: $verticalNavExpandedWidth;
   height: $bodyHeight;
   border-width: 0px 1px 0px 0px;
   border-color: $containerBorder;
   border-style: solid;
   padding: 0px $pageSidePadding 0px $pageSidePadding;
+
+  &.pinned {
+    width: 50px;
+  }
+
+  .searchInputWrapper {
+    height: pixel-to-rem(46);
+    cursor: pointer;
+  }
+
+  .subSectionHeader {
+    height: pixel-to-rem(20);
+  }
+
+  .subSectionLink {
+    position: relative;
+    margin: 4px 0px 4px calc(#{-$pageSidePadding} + 4px);
+    padding: 4px 0px 4px calc(#{$pageSidePadding} - 4px);
+    border-radius: 4px;
+
+    a {
+      height: pixel-to-rem(20);
+    }
+
+    &:hover {
+      background-color: $pds-space-2;
+      a {
+        font-weight: bold;
+      }
+      svg path {
+        fill: $pds-secondary-hover;
+      }
+    }
+    
+    &.active {
+      background-color: $pds-sky-1;
+      margin: 4px 0px 4px calc(#{-$pageSidePadding});
+      padding: 4px 0px 4px calc(#{$pageSidePadding});
+      a {
+        font-weight: bold;
+      }
+      svg path {
+        fill: $pds-primary-active;
+      }
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        height: 100%;
+        background-color: $pds-primary-active;
+      }
+    }
+  }
+
+  svg path {
+    fill: $pds-secondary;
+  }
+
+  .collapseControl {
+    position: absolute;
+    left: calc(100% - 8px);
+    border: 1px solid $textDefault;
+    background-color: white;
+    width: 16px;
+    height: 16px;
+    &:hover {
+      background-color: $textDefault;
+      color: white;
+    }
+    svg {
+      position: relative;
+      top: -5px;
+      width: 11px;
+      height: 11px;
+    }
+  }
 }

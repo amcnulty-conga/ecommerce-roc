@@ -1,8 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import ProductCard from '../../features/products/ProductCard/ProductCard';
 import './Catalog.scss';
 
 const Catalog = () => {
+  const products = useSelector(state => state.products);
   return (
     <div className='Catalog'>
       <div className='sectionHeader px-4 py-3 d-flex justify-content-between align-items-center'>
@@ -13,45 +15,22 @@ const Catalog = () => {
         </div>
       </div>
       <div className='sectionBody px-4 py-3'>
-        <cc-tab-set>
-          <cc-tab-item role="heading" slot="tab">Download Product Data Template</cc-tab-item>
-          <cc-tab-panel role="region" slot="panel">
-            <div className='gridControls d-flex align-items-center py-4'>
-              <span>1-9 of 27 items</span>
-              <span className='me-auto'>Sorted by price</span>
-              <label>Sort By:</label>
-              <cc-select class='mx-3' ></cc-select>
-              <cc-icon name='fas list' ></cc-icon>
-            </div>
-            <div className='row'>
-              <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
-                <ProductCard/>
+        <div className='gridControls d-flex align-items-center py-4'>
+          <span>1-9 of 27 items</span>
+          <span className='me-auto'>Sorted by price</span>
+          <label>Sort By:</label>
+          <cc-select class='mx-3' ></cc-select>
+          <cc-icon name='fas list' ></cc-icon>
+        </div>
+        <div className='row'>
+          {
+            products.list.map(product => (
+              <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3' key={product.Id}>
+                <ProductCard product={product} productName={product.Name} productImage={product.ImageURL} />
               </div>
-              <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
-                <ProductCard/>
-              </div>
-              <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
-                <ProductCard/>
-              </div>
-              <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
-                <ProductCard/>
-              </div>
-              <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
-                <ProductCard/>
-              </div>
-              <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
-                <ProductCard/>
-              </div>
-              <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
-                <ProductCard/>
-              </div>
-            </div>
-          </cc-tab-panel>
-          <cc-tab-item role="heading" slot="tab">Upload Product Data</cc-tab-item>
-          <cc-tab-panel role="region" slot="panel">Upload Product Data Content</cc-tab-panel>
-          <cc-tab-item role="heading" slot="tab">View Upload History</cc-tab-item>
-          <cc-tab-panel role="region" slot="panel">View Upload History Content</cc-tab-panel>
-        </cc-tab-set>
+            ))
+          }
+        </div>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@
 
 .Main {
   width: 100%;
-  height: calc(100vh - 107px);
+  height: $bodyHeight;
   overflow: auto;
   .mainContentCard {
     border-width: 1px;

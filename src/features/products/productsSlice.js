@@ -9,7 +9,7 @@ const initialState = {
 export const loadProducts = createAsyncThunk(
   'products/loadProducts',
   async () => {
-    const response = await fetch('http://conga-recip-11304rk9iu83h-922651169.us-west-1.elb.amazonaws.com/catalog/products', {
+    const response = await fetch('http://conga-recip-11304rk9iu83h-922651169.us-west-1.elb.amazonaws.com/catalog/products?limit=10&includes=prices', {
       headers: new Headers({
         'Authorization': 'Bearer 123'
       }) 

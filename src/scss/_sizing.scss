@@ -20,9 +20,12 @@ $headerHeight: pixel-to-rem(49);
 // Action Bar
 $actionBarHeight: pixel-to-rem(58);
 
+// App
+$appHeight: calc(100vh - #{$actionBarHeight});
+
 // Body
 $bodyTopMargin: pixel-to-rem(58);
-$bodyHeight: calc(100vh - 107px);
+$bodyHeight: calc(100vh - calc(#{$headerHeight} + #{$actionBarHeight}));
 
 // Vertical Nav
 $verticalNavExpandedWidth: 252px;

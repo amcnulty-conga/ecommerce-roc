@@ -1,7 +1,7 @@
 @import 'variables';
 
 .App {
-  height: calc(100vh - 58px);
+  height: $appHeight;
   overflow: hidden;
   margin-top: $bodyTopMargin;
 }

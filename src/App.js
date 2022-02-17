@@ -4,10 +4,12 @@ import './App.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { loadProducts } from './features/products/productsSlice';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './shared/Header/Header';
 import ActionBar from './shared/ActionBar/ActionBar';
 import VerticalNav from './shared/VerticalNav/VerticalNav';
 import Main from './routes/Main/Main';
+import Home from './routes/Home/Home';
 
 function App() {
   const { t } = useTranslation();
@@ -59,12 +61,21 @@ function App() {
 
   return (
     <div className='App LightTheme'>
-      <Header/>
-      <ActionBar/>
-      <div className='bodyContent d-flex'>
-        <VerticalNav/>
-        <Main/>
-      </div>
+      <BrowserRouter>
+        <Header/>
+        <Routes>
+          <Route path='/' exact element={<Home/>} />
+          <Route path='/*' element={
+            <>
+              <ActionBar/>
+              <div className='bodyContent d-flex'>
+                <VerticalNav/>
+                <Main/>
+              </div>
+            </>
+          }/>
+        </Routes>
+      </BrowserRouter>
       {/* <cc-app-bar productName='eCommerce ROC' brand='eCom' userName='Aaron' userEmail='amcnulty@conga.com' userAbbr='AM'></cc-app-bar>
       <cc-action-bar></cc-action-bar>
       <div className='row' style={{marginTop: '49px'}}>
