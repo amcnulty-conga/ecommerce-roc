@@ -5,8 +5,9 @@ import './Home.scss';
 const Home = () => {
   return (
     <div className='Home'>
+      <img src='https://picsum.photos/1920/1080/?blur=2'/>
       Home
-      <Link to='Catalog'>Catalog</Link>
+      <Link to='catalog'>Catalog</Link>
     </div>
   );
 };

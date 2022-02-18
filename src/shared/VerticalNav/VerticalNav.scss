@@ -65,6 +65,16 @@
         background-color: $pds-primary-active;
       }
     }
+
+    > button {
+      height: pixel-to-rem(20);
+      line-height: pixel-to-rem(20);
+      padding: 0px;
+
+      &:hover {
+        font-weight: bold;
+      }
+    }
   }
 
   svg path {

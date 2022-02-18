@@ -1,0 +1,23 @@
+@import 'variables';
+
+.CategoryButton {
+  position: relative;
+  margin: 4px 0px 4px calc(#{-$pageSidePadding} + 4px);
+  padding: 4px 0px 4px calc(#{$pageSidePadding} - 4px);
+  border-radius: 4px;
+
+
+  &:hover {
+    background-color: $pds-space-2;
+  }
+
+  button {
+    height: pixel-to-rem(20);
+    line-height: pixel-to-rem(20);
+    padding: 0px;
+
+    &:hover {
+      font-weight: bold;
+    }
+  }
+}
