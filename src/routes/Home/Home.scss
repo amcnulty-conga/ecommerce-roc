@@ -1,5 +1,35 @@
 @import 'variables';
 
 .Home {
-  
+  height: $appHeight;
+  margin-top: -$headerHeight;
+  overflow: auto;
+  .landing {
+    height: 70vh;
+    .leftContent {
+      // background-image: linear-gradient(to left ,$pds-space-1, $pds-space-3);
+      background-image: linear-gradient(to left, rgba(0,0,0,0), $pds-space-3 35%, $pds-space-3 65%, rgba(0,0,0,0) 100%);
+      opacity: .9;
+      .fancyLetters {
+        text-shadow: 2px 2px $pds-space-4;
+        letter-spacing: 5px;
+        border-left: 4px solid $pds-primary;
+        padding-left: 20px;
+      }
+    }
+  }
+  .aboutSection {
+    background-color: $pds-olive-2;
+  }
+  .featuredProductsList {
+    >div {
+      display: inline-block;
+      width: 50%;
+      .customCard {
+        padding: 2rem;
+        margin: 1rem 0px;
+        background: $pds-space-1;
+      }
+    }
+  }
 }
