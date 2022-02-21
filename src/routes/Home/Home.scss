@@ -20,6 +20,10 @@
   }
   .aboutSection {
     background-color: $pds-olive-2;
+    img {
+      height: 100px;
+      max-width: 100%;
+    }
   }
   .featuredProductsList {
     >div {

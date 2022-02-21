@@ -14,7 +14,6 @@ import Home from './routes/Home/Home';
 function App() {
   const { t } = useTranslation();
   const products = useSelector(state => state.products);
-  console.log('products :>> ', products);
   const dispatch = useDispatch();
 
   useEffect(() => {

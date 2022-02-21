@@ -107,7 +107,7 @@ const VerticalNav = () => {
             <CategoryButton category={categories.selectedCategory} onClick={() => dispatch(loadParentCategories(categories.selectedCategory))} />
           }
           {
-            categories.list.map(category => <CategoryButton child category={category} onClick={() => dispatch(loadChildCategories(category))} />)
+            categories.list.map(category => <CategoryButton key={category.Id} child category={category} onClick={() => dispatch(loadChildCategories(category))} />)
           }
         </>
       }

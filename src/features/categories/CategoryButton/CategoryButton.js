@@ -7,7 +7,7 @@ const CategoryButton = ({category, onClick, child}) => {
     <div className='CategoryButton'>
       <button className='btn w-100 text-start' onClick={onClick}>
         {!child && <FontAwesomeIcon icon={faArrowLeftLong} />}
-        <span className={child && 'ms-4'}>{category.Label}</span>
+        <span className={child ? 'ms-4' : 'fw-bold ms-1'}>{category.Label}</span>
       </button>
     </div>
   );
