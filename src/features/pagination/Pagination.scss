@@ -1,0 +1,17 @@
+@import 'variables';
+
+.Pagination {
+
+  input.formControl {
+    text-align: center;
+    width: 52px;
+    height: pixel-to-rem(36);
+  }
+
+  span.separator {
+    width: 1px;
+    height: pixel-to-rem(16);
+    background-color: $containerBorder;
+  }
+
+}

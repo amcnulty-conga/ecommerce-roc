@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import Pagination from '../../features/pagination/Pagination';
 import ProductCard from '../../features/products/ProductCard/ProductCard';
 import './Catalog.scss';
 
@@ -16,11 +17,9 @@ const Catalog = () => {
       </div>
       <div className='sectionBody px-4 py-3'>
         <div className='gridControls d-flex align-items-center py-4'>
-          <span>1-9 of 27 items</span>
-          <span className='me-auto'>Sorted by price</span>
           <label>Sort By:</label>
-          <cc-select class='mx-3' ></cc-select>
-          <cc-icon name='fas list' ></cc-icon>
+          <cc-select class='mx-3 me-auto' ></cc-select>
+          <Pagination/>
         </div>
         <div className='row'>
           {
