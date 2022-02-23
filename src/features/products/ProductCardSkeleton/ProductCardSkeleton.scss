@@ -1,0 +1,49 @@
+@import 'variables';
+
+$productCardHeight: pixel-to-rem(400);
+$cardPadding: 20px;
+$titleHeight: pixel-to-rem(15);
+$imageHeight: pixel-to-rem(150);
+$content-1-height: pixel-to-rem(20);
+$content-2-height: pixel-to-rem(30);
+
+.ProductCardSkeleton {
+  width: $productCardWidth;
+  height: $productCardHeight;
+  border-radius: 5px;
+  background-image:
+    linear-gradient(90deg, rgba($pds-space-0, 0) 0, rgba($pds-space-0, .8) 50%, rgba($pds-space-0, 0) 100%),
+    linear-gradient($pds-space-1 $titleHeight, transparent 0),
+    linear-gradient($pds-space-1 $imageHeight, transparent 0),
+    linear-gradient($pds-space-1 $content-1-height, transparent 0),
+    linear-gradient($pds-space-1 $content-2-height, transparent 0),
+    linear-gradient($pds-space-2 $productCardHeight, transparent 0);
+  background-size:
+    200px $productCardHeight,
+    80px $titleHeight,
+    calc(#{$productCardWidth} - #{$cardPadding * 4}) $imageHeight,
+    calc(#{$productCardWidth} - 70px) $content-1-height,
+    calc(#{$productCardWidth} - 30px) $content-2-height,
+    100% 100%;
+  background-position:
+    -150% 0,
+    $cardPadding $cardPadding,
+    calc(#{$cardPadding} * 2) pixel-to-rem(70),
+    $cardPadding pixel-to-rem(270),
+    $cardPadding pixel-to-rem(300),
+    0 0;
+  background-repeat: no-repeat;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  to {
+    background-position:
+      350% 0,
+      $cardPadding $cardPadding,
+      calc(#{$cardPadding} * 2) pixel-to-rem(70),
+      $cardPadding pixel-to-rem(270),
+      $cardPadding pixel-to-rem(300),
+      0 0;
+  }
+}

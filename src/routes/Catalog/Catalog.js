@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import Pagination from '../../features/pagination/Pagination';
 import ProductCard from '../../features/products/ProductCard/ProductCard';
+import ProductCardSkeleton from '../../features/products/ProductCardSkeleton/ProductCardSkeleton';
 import './Catalog.scss';
 
 const Catalog = () => {
@@ -23,6 +24,29 @@ const Catalog = () => {
         </div>
         <div className='row'>
           {
+            products.isLoading
+            ?
+            <>
+              <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
+                <ProductCardSkeleton/>
+              </div>
+              <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
+                <ProductCardSkeleton/>
+              </div>
+              <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
+                <ProductCardSkeleton/>
+              </div>
+              <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
+                <ProductCardSkeleton/>
+              </div>
+              <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
+                <ProductCardSkeleton/>
+              </div>
+              <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
+                <ProductCardSkeleton/>
+              </div>
+            </>
+            :
             products.list.map(product => (
               <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3' key={product.Id}>
                 <ProductCard product={product} productName={product.Name} productImage={product.ImageURL} />
