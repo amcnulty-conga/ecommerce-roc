@@ -6,3 +6,11 @@ export const REQUEST_HEADERS = {
   'Authorization': 'Bearer 123',
   'PriceListId': '327c354a-eef5-4254-ad8b-63a9031278da'
 };
+
+export const debounce = (callback, delay) => {
+  let timeout;
+  return () => {
+    clearTimeout(timeout);
+    timeout = setTimeout(callback, delay);
+  }
+}

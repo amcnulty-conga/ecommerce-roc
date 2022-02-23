@@ -9,7 +9,7 @@ const Catalog = () => {
   return (
     <div className='Catalog'>
       <div className='sectionHeader px-4 py-3 d-flex justify-content-between align-items-center'>
-        <h5>Bulk Upload of Products</h5>
+        <h5>Product Listing</h5>
         <div className='d-flex align-items-center'>
           <cc-icon name='far circle-question' ></cc-icon>
           <a href='#' className='text-decoration-none ms-2'>Help</a>

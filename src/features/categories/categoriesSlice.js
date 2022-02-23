@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { baseUrl } from '../../shared/baseUrl';
-import { loadProductsFromCategory } from '../products/productsSlice';
+import { loadProducts } from '../products/productsSlice';
 
 class LinkedList {
   constructor(head = null) {
@@ -89,7 +89,7 @@ export const loadChildCategories = createAsyncThunk(
       dispatch(setSelectedCategory(categoriesHistoryList.last().getCategory()));
     }
     const { Id } = category;
-    dispatch(loadProductsFromCategory(Id));
+    dispatch(loadProducts());
     const response = await fetch(`${baseUrl}catalog/categories?filter=eq(AncestorId,${`'${Id}'`})`, {
       headers: new Headers({
         'Authorization': 'Bearer 123'
@@ -109,6 +109,7 @@ export const loadParentCategories = createAsyncThunk(
   });
   categoriesHistoryList.removeLast();
   dispatch(setSelectedCategory(categoriesHistoryList.last() ? categoriesHistoryList.last().getCategory() : null));
+  dispatch(loadProducts());
   const payload = response.json();
   return payload;
   }
