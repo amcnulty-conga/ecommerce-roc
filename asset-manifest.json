@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/ecommerce-roc/static/css/main.a7a3935c.css",
-    "main.js": "/ecommerce-roc/static/js/main.eadd8654.js",
+    "main.css": "/ecommerce-roc/static/css/main.44fee84a.css",
+    "main.js": "/ecommerce-roc/static/js/main.c57ac3e8.js",
     "static/media/OpenSans-Regular.ttf": "/ecommerce-roc/static/media/OpenSans-Regular.d7d7b8359eeb9cddfba6.ttf",
     "static/media/OpenSans-SemiBold.ttf": "/ecommerce-roc/static/media/OpenSans-SemiBold.d7261533b9a545ddc769.ttf",
     "static/media/productImage.png": "/ecommerce-roc/static/media/productImage.1b5369f377d1bd993ded.png",
     "index.html": "/ecommerce-roc/index.html",
-    "main.a7a3935c.css.map": "/ecommerce-roc/static/css/main.a7a3935c.css.map",
-    "main.eadd8654.js.map": "/ecommerce-roc/static/js/main.eadd8654.js.map"
+    "main.44fee84a.css.map": "/ecommerce-roc/static/css/main.44fee84a.css.map",
+    "main.c57ac3e8.js.map": "/ecommerce-roc/static/js/main.c57ac3e8.js.map"
   },
   "entrypoints": [
-    "static/css/main.a7a3935c.css",
-    "static/js/main.eadd8654.js"
+    "static/css/main.44fee84a.css",
+    "static/js/main.c57ac3e8.js"
   ]
 }
