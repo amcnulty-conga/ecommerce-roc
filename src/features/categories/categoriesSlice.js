@@ -72,7 +72,7 @@ const initialState = {
 export const loadTopCategories = createAsyncThunk(
   'categories/loadTopCategories',
   async () => {
-    const response = await fetch(`${baseUrl}catalog/categories?filter=eq(AncestorId,null)`, {
+    const response = await fetch(`${baseUrl}catalog/categories?filter=eq(AncestorId:null)`, {
       headers: new Headers({
         'Authorization': 'Bearer 123'
       }) 
@@ -90,7 +90,7 @@ export const loadChildCategories = createAsyncThunk(
     }
     const { Id } = category;
     dispatch(loadProducts());
-    const response = await fetch(`${baseUrl}catalog/categories?filter=eq(AncestorId,${`'${Id}'`})`, {
+    const response = await fetch(`${baseUrl}catalog/categories?filter=eq(AncestorId:${`'${Id}'`})`, {
       headers: new Headers({
         'Authorization': 'Bearer 123'
       }) 
@@ -102,7 +102,7 @@ export const loadChildCategories = createAsyncThunk(
 export const loadParentCategories = createAsyncThunk(
   'categories/loadParentCategories',
   async (category = { AncestorId: null }, { dispatch }) => {
-    const response = await fetch(`${baseUrl}catalog/categories?filter=eq(AncestorId,${category.AncestorId ? `'${category.AncestorId}'` : null})`, {
+    const response = await fetch(`${baseUrl}catalog/categories?filter=eq(AncestorId:${category.AncestorId ? `'${category.AncestorId}'` : null})`, {
     headers: new Headers({
       'Authorization': 'Bearer 123'
     })

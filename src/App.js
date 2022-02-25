@@ -10,6 +10,7 @@ import ActionBar from './shared/ActionBar/ActionBar';
 import VerticalNav from './shared/VerticalNav/VerticalNav';
 import Main from './routes/Main/Main';
 import Home from './routes/Home/Home';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
 function App() {
   const { t } = useTranslation();
@@ -68,7 +69,9 @@ function App() {
             <>
               <ActionBar/>
               <div className='bodyContent d-flex'>
-                <VerticalNav/>
+                <ErrorBoundary>
+                  <VerticalNav/>
+                </ErrorBoundary>
                 <Main/>
               </div>
             </>
