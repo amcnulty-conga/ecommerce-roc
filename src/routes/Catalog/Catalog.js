@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import ErrorBoundary from '../../components/ErrorBoundary/ErrorBoundary';
 import Pagination from '../../features/pagination/Pagination';
 import ProductCard from '../../features/products/ProductCard/ProductCard';
 import ProductCardSkeleton from '../../features/products/ProductCardSkeleton/ProductCardSkeleton';
@@ -17,10 +18,16 @@ const Catalog = () => {
         </div>
       </div>
       <div className='sectionBody px-4 py-3'>
-        <div className='gridControls d-flex align-items-center py-4'>
-          <label>Sort By:</label>
-          <cc-select class='mx-3 me-auto' ></cc-select>
-          <Pagination/>
+        <div className='gridControls row align-items-center py-4'>
+            <div className='col-12 col-lg-5 d-flex align-items-center order-1 order-lg-0'>
+              <label>Sort By:</label>
+              <cc-select class='mx-3 me-auto' ></cc-select>
+            </div>
+            <div className='col-12 col-lg-7 d-flex justify-content-lg-end order-0 order-lg-1'>
+              <ErrorBoundary>
+                <Pagination/>
+              </ErrorBoundary>
+            </div>
         </div>
         <div className='row'>
           {

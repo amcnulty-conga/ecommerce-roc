@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { baseUrl } from '../../shared/baseUrl';
+import { REQUEST_HEADERS } from '../../util/helpers';
 import { loadProducts } from '../products/productsSlice';
 
 class LinkedList {
@@ -73,9 +74,7 @@ export const loadTopCategories = createAsyncThunk(
   'categories/loadTopCategories',
   async () => {
     const response = await fetch(`${baseUrl}catalog/categories?filter=eq(AncestorId:null)`, {
-      headers: new Headers({
-        'Authorization': 'Bearer 123'
-      }) 
+      headers: new Headers(REQUEST_HEADERS) 
     });
     return response.json();
   }
@@ -91,9 +90,7 @@ export const loadChildCategories = createAsyncThunk(
     const { Id } = category;
     dispatch(loadProducts());
     const response = await fetch(`${baseUrl}catalog/categories?filter=eq(AncestorId:${`'${Id}'`})`, {
-      headers: new Headers({
-        'Authorization': 'Bearer 123'
-      }) 
+      headers: new Headers(REQUEST_HEADERS) 
     });
     return response.json();
   }
@@ -103,9 +100,7 @@ export const loadParentCategories = createAsyncThunk(
   'categories/loadParentCategories',
   async (category = { AncestorId: null }, { dispatch }) => {
     const response = await fetch(`${baseUrl}catalog/categories?filter=eq(AncestorId:${category.AncestorId ? `'${category.AncestorId}'` : null})`, {
-    headers: new Headers({
-      'Authorization': 'Bearer 123'
-    })
+    headers: new Headers(REQUEST_HEADERS)
   });
   categoriesHistoryList.removeLast();
   dispatch(setSelectedCategory(categoriesHistoryList.last() ? categoriesHistoryList.last().getCategory() : null));
