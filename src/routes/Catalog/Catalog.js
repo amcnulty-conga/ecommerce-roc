@@ -1,13 +1,20 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ErrorBoundary from '../../components/ErrorBoundary/ErrorBoundary';
 import Pagination from '../../features/pagination/Pagination';
 import ProductCard from '../../features/products/ProductCard/ProductCard';
 import ProductCardSkeleton from '../../features/products/ProductCardSkeleton/ProductCardSkeleton';
+import { loadProducts } from '../../features/products/productsSlice';
 import './Catalog.scss';
 
 const Catalog = () => {
   const products = useSelector(state => state.products);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadProducts());
+  }, [dispatch]);
+
   return (
     <div className='Catalog'>
       <div className='sectionHeader px-4 py-3 d-flex justify-content-between align-items-center'>
@@ -59,6 +66,11 @@ const Catalog = () => {
                 <ProductCard product={product} productName={product.Name} productImage={product.ImageURL} />
               </div>
             ))
+          }
+          {
+            !products.isLoading && products.list.length === 0
+            &&
+            <p>{products.errorMessage}</p>
           }
         </div>
       </div>

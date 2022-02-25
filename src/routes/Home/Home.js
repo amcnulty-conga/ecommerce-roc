@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { loadTopCategories } from '../../features/categories/categoriesSlice';
+import { loadHomeCategories } from '../../features/categories/categoriesSlice';
 import { loadProducts } from '../../features/products/productsSlice';
 import './Home.scss';
 
@@ -12,7 +12,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(loadProducts());
-    dispatch(loadTopCategories())
+    dispatch(loadHomeCategories())
   }, [dispatch]);
 
   return (
@@ -53,7 +53,7 @@ const Home = () => {
               <div className={`col-11 my-4 col-md-6 col-lg-4 ${index > 2 && 'd-lg-none'}`} key={category.Id}>
                 <div className='categoryCard card p-5'>
                   <h4 className='fw-bold'>{category.Label}</h4>
-                  <img className='p-5' src={category.ImageURL} alt={category.Label} />
+                  <img className='p-5' src={category.ImageURL ? category.ImageURL : `http://placeimg.com/640/480?cache=${Math.random()}`} alt={category.Label} />
                   <p>{category.Description}</p>
                   <div className='d-flex justify-content-center'>
                     <Link to='/catalog' className='btn btn-outline-secondary w-50'>Shop {category.Label}</Link>

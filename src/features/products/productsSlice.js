@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { baseUrl } from '../../shared/baseUrl';
 import { REQUEST_HEADERS } from '../../util/helpers';
+import axios from 'axios';
 
 const initialState = {
   list: [],
@@ -21,24 +22,17 @@ export const loadProducts = createAsyncThunk(
       products: { paginationData },
       categories: { selectedCategory }
     } = getState();
-    let response;
     if (selectedCategory) {
-      response = await fetch(
+      return axios.get(
         `${baseUrl}catalog/categories/${selectedCategory.Id}/products?limit=${paginationData.perPage}&includes=prices&page=${payload.page}`,
-        {
-          headers: new Headers(REQUEST_HEADERS)
-        }
+        { headers: REQUEST_HEADERS}
       );
     } else {
-      response = await fetch(
+      return axios.get(
         `${baseUrl}catalog/products?limit=${paginationData.perPage}&includes=prices&page=${payload.page}`,
-        {
-          headers: new Headers(REQUEST_HEADERS)
-        }
+        { headers: REQUEST_HEADERS }
       );
     }
-    const data = await response.json();
-    return { headers: [...response.headers], body: data };
   }
 );
 
@@ -48,28 +42,27 @@ const pendingReducer = (state, action) => {
 };
 
 const fulfilledReducer = (state, action) => {
-  const contentRangeHeader = action.payload.headers.find(
-    header => header[0] === 'content-range'
-  );
+  const contentRangeHeader = action.payload.headers['content-range'];
   if (contentRangeHeader && contentRangeHeader.length > 0) {
-    state.paginationData.from = contentRangeHeader[1]
-      .split('Product ')[1]
+    state.paginationData.from = contentRangeHeader
+      .split(' ')[1]
       .split('/')[0]
       .split('-')[0];
-    state.paginationData.to = contentRangeHeader[1]
-      .split('Product ')[1]
+    state.paginationData.to = contentRangeHeader
+      .split(' ')[1]
       .split('/')[0]
       .split('-')[1];
-    state.paginationData.total = contentRangeHeader[1]
-      .split('Product ')[1]
+    state.paginationData.total = contentRangeHeader
+      .split(' ')[1]
       .split('/')[1];
   }
   state.isLoading = false;
-  state.list = action.payload.body;
+  state.list = action.payload.data ? action.payload.data : [];
 };
 
 const rejectedReducer = (state, action) => {
   state.isLoading = false;
+  state.list = [];
   state.errorMessage = action.error
     ? action.error.message
     : 'Error loading products';

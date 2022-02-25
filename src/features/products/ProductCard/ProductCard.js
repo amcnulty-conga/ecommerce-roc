@@ -9,7 +9,7 @@ const ProductCard = (props) => {
     <div className='ProductCard'>
       <div className="productCardBody">
         <div className="productTitle">{props.productName}</div>
-        <div className="productImage" style={{backgroundImage: `${props.productImage ? `url("${props.productImage}")` : productImage}`}}></div>
+        <div className="productImage" style={{backgroundImage: `${props.productImage ? `url("${props.productImage}?cache=${Math.random()}")` : productImage}`}}></div>
         <div className="productDescription">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Autem quis ipsam neque error natus magnam harum labore iure.</div>
         <div className="productPrice mt-2 d-flex justify-content-between">
           <label>Standard Price</label>
@@ -23,8 +23,8 @@ const ProductCard = (props) => {
       <div className="productCardFooter d-flex justify-content-center align-items-center">
         <label>{t('productCard.QUANTITY_LABEL')}</label>
         {/* <input className='form-control mx-3' type="number" /> */}
-        <cc-input type='number' ></cc-input>
-        <button className="btn btn-sfdc">{t('common.ADD_TO_CART')}</button>
+        <cc-input type='number' style={{paddingTop: '3px'}}></cc-input>
+        <cc-button label={t('common.ADD_TO_CART')} variant='primary'></cc-button>
       </div>
     </div>
   );
