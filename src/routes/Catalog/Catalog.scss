@@ -6,4 +6,11 @@
     border-style: solid;
     border-color: $containerBorder;
   }
+  .sectionBody {
+    .gridControls {
+      .productFamilyInput {
+        max-width: 160px;
+      }
+    }
+  }
 }

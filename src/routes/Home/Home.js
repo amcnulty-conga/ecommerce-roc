@@ -11,7 +11,7 @@ const Home = () => {
   const categories = useSelector(state => state.categories);
 
   useEffect(() => {
-    dispatch(loadProducts());
+    dispatch(loadProducts({sort: '', filter: ''}));
     dispatch(loadHomeCategories())
   }, [dispatch]);
 

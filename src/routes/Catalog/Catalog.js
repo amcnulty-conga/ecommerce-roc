@@ -1,77 +1,132 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ErrorBoundary from '../../components/ErrorBoundary/ErrorBoundary';
 import Pagination from '../../features/pagination/Pagination';
 import ProductCard from '../../features/products/ProductCard/ProductCard';
 import ProductCardSkeleton from '../../features/products/ProductCardSkeleton/ProductCardSkeleton';
-import { loadProducts } from '../../features/products/productsSlice';
+import { loadProducts, productSortChange, productFamilyChange, selectProductFamily, selectSortText } from '../../features/products/productsSlice';
+import {
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle
+} from 'reactstrap';
 import './Catalog.scss';
 
 const Catalog = () => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  // const [sortText, setSortText] = useState('');
+  // const [productFamily, setProductFamily] = useState('');
   const products = useSelector(state => state.products);
+  const sortText = useSelector(selectSortText);
+  const productFamily = useSelector(selectProductFamily);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(loadProducts());
-  }, [dispatch]);
+  }, [dispatch, sortText, productFamily]);
 
   return (
     <div className='Catalog'>
       <div className='sectionHeader px-4 py-3 d-flex justify-content-between align-items-center'>
         <h5>Product Listing</h5>
         <div className='d-flex align-items-center'>
-          <cc-icon name='far circle-question' ></cc-icon>
-          <a href='#' className='text-decoration-none ms-2'>Help</a>
+          <cc-icon name='far circle-question'></cc-icon>
+          <a href='#' className='text-decoration-none ms-2'>
+            Help
+          </a>
         </div>
       </div>
       <div className='sectionBody px-4 py-3'>
         <div className='gridControls row align-items-center py-4'>
-            <div className='col-12 col-lg-5 d-flex align-items-center order-1 order-lg-0'>
-              <label>Sort By:</label>
-              <cc-select class='mx-3 me-auto' ></cc-select>
-            </div>
-            <div className='col-12 col-lg-7 d-flex justify-content-lg-end order-0 order-lg-1'>
-              <ErrorBoundary>
-                <Pagination/>
-              </ErrorBoundary>
-            </div>
+          <div className='col-12 col-lg-4 d-flex align-items-center order-1 order-lg-0 mt-3 mt-lg-0'>
+            <select
+              className='productFamilyInput form-select bg-white'
+              value={productFamily}
+              onChange={event => dispatch(productFamilyChange((event.target.value)))}
+            >
+              <option value=''>Product Family</option>
+              <option value='Software'>Software</option>
+              <option value='Hardware'>Hardware</option>
+              <option value='Maintenance-HW'>Maintenance-HW</option>
+              <option value='Implementation'>Implementation</option>
+              <option value='Training'>Training</option>
+              <option value='Other'>Other</option>
+              <option value='Maintenance-SW'>Maintenance-SW</option>
+            </select>
+            <Dropdown
+              isOpen={dropdownOpen}
+              toggle={() => setDropdownOpen(!dropdownOpen)}
+            >
+              <DropdownToggle data-toggle='dropdown' tag='span'>
+                <cc-button icon='fas filter' variant='tertiary'></cc-button>
+              </DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem onClick={() => dispatch(productSortChange('Name Asc'))}>
+                  Name Asc
+                </DropdownItem>
+                <DropdownItem onClick={() => dispatch(productSortChange('Name Desc'))}>
+                  Name Desc
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </div>
+          <div className='col-12 col-lg-8 d-flex justify-content-lg-end order-0 order-lg-1'>
+            <ErrorBoundary>
+              <Pagination />
+            </ErrorBoundary>
+          </div>
         </div>
+        {sortText && (
+          <span className='sortBadge badge bg-secondary'>
+            {sortText}
+            <button
+              onClick={() => dispatch(productSortChange(''))}
+              className='btn text-white py-0 pe-0'
+            >
+              &times;
+            </button>
+          </span>
+        )}
         <div className='row'>
-          {
-            products.isLoading
-            ?
+          {products.isLoading ? (
             <>
               <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
-                <ProductCardSkeleton/>
+                <ProductCardSkeleton />
               </div>
               <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
-                <ProductCardSkeleton/>
+                <ProductCardSkeleton />
               </div>
               <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
-                <ProductCardSkeleton/>
+                <ProductCardSkeleton />
               </div>
               <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
-                <ProductCardSkeleton/>
+                <ProductCardSkeleton />
               </div>
               <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
-                <ProductCardSkeleton/>
+                <ProductCardSkeleton />
               </div>
               <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
-                <ProductCardSkeleton/>
+                <ProductCardSkeleton />
               </div>
             </>
-            :
+          ) : (
             products.list.map(product => (
-              <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3' key={product.Id}>
-                <ProductCard product={product} productName={product.Name} productImage={product.ImageURL} />
+              <div
+                className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'
+                key={product.Id}
+              >
+                <ProductCard
+                  product={product}
+                  productName={product.Name}
+                  productImage={product.ImageURL}
+                />
               </div>
             ))
-          }
-          {
-            !products.isLoading && products.list.length === 0
-            &&
+          )}
+          {!products.isLoading && products.list.length === 0 && (
             <p>{products.errorMessage}</p>
-          }
+          )}
         </div>
       </div>
     </div>

@@ -2,6 +2,17 @@ export const PAGE_ROUTE_TO_DISPLAY_NAME_MAP = {
   '/catalog': 'Catalog'
 }
 
+export const SORT_TEXT_TO_PARAM_MAP = {
+  'Name Asc': {
+    sortDirection: 'asc',
+    sortField: 'Name'
+  },
+  'Name Desc': {
+    sortDirection: 'desc',
+    sortField: 'Name'
+  }
+};
+
 let index = Number.parseInt(localStorage.getItem('priceList'));
 if (Number.isNaN(index)) {
   localStorage.setItem('priceList', '1');
