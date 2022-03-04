@@ -5,12 +5,13 @@ import './VerticalNav.scss';
 import { faChevronLeft, faChevronRight, faCog, faHome, faListDots, faSearch, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadChildCategories, loadParentCategories, loadTopCategories } from '../../features/categories/categoriesSlice';
+import { categoriesHistoryList, loadChildCategories, loadParentCategories, loadTopCategories, selectedCategory as selectedCategorySelector } from '../../features/categories/categoriesSlice';
 import CategoryButton from '../../features/categories/CategoryButton/CategoryButton';
 
 const VerticalNav = () => {
   const [pinned, setPinned] = useState(false);
   const categories = useSelector(state => state.categories);
+  const selectedCategory = useSelector(selectedCategorySelector);
   const dispatch = useDispatch();
   const location = useLocation();
 
@@ -103,16 +104,25 @@ const VerticalNav = () => {
         <>
           <p className='subSectionHeader fw-bold mt-3'>CATEGORIES</p>
           {
-            categories.selectedCategory &&
-            <CategoryButton category={categories.selectedCategory} onClick={() => dispatch(loadParentCategories(categories.selectedCategory))} />
+            categoriesHistoryList.last() && categoriesHistoryList.last().getPrevious()
+            ?
+            <CategoryButton category={categoriesHistoryList.last().getPrevious().getCategory()} onClick={() => dispatch(loadParentCategories(selectedCategory))} />
+            :
+            categoriesHistoryList.last() &&
+            <CategoryButton category={{Label: 'All Products'}} onClick={() => dispatch(loadParentCategories(selectedCategory))} />
+          }
+          {
+            selectedCategory
+            ?
+            <div className='subSectionLink active mt-3'>{selectedCategory.Name}</div>
+            :
+            <div className='subSectionLink active mt-3'>All Products</div>
           }
           {
             categories.list.map(category => <CategoryButton key={category.Id} child category={category} onClick={() => dispatch(loadChildCategories(category))} />)
           }
         </>
       }
-
-
     </div>
   );
 };

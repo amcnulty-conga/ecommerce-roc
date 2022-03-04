@@ -15,8 +15,6 @@ import './Catalog.scss';
 
 const Catalog = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  // const [sortText, setSortText] = useState('');
-  // const [productFamily, setProductFamily] = useState('');
   const products = useSelector(state => state.products);
   const sortText = useSelector(selectSortText);
   const productFamily = useSelector(selectProductFamily);
@@ -41,7 +39,7 @@ const Catalog = () => {
         <div className='gridControls row align-items-center py-4'>
           <div className='col-12 col-lg-4 d-flex align-items-center order-1 order-lg-0 mt-3 mt-lg-0'>
             <select
-              className='productFamilyInput form-select bg-white'
+              className='productFamilyInput form-select bg-white me-1'
               value={productFamily}
               onChange={event => dispatch(productFamilyChange((event.target.value)))}
             >

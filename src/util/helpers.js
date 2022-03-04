@@ -22,6 +22,7 @@ if (Number.isNaN(index)) {
 const priceListIdsList = [
   '327c354a-eef5-4254-ad8b-63a9031278da',
   'f1a99f16-149a-4477-951c-2efbd61737f0',
+  '23be3fc5-ffe5-42cf-84f6-c15906aad8cd',
   'bb3e5eb0-0ca0-4f02-969a-8c4858cdb962',
   '3962d9f5-3382-49ef-b56b-62d7bf8cf140',
   'e0c3f724-5799-40b9-8c7d-b0ae96192755'

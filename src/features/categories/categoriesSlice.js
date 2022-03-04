@@ -60,7 +60,7 @@ class ListNode {
   }
 }
 
-const categoriesHistoryList = new LinkedList();
+export const categoriesHistoryList = new LinkedList();
 
 const initialState = {
   selectedCategory: null,
@@ -179,6 +179,8 @@ const categoriesSlice = createSlice({
     [loadParentCategories.rejected]: rejectedReducer
   }
 });
+
+export const selectedCategory = state => state.categories.selectedCategory;
 
 export const { setSelectedCategory, setLastParentCategory } =
   categoriesSlice.actions;

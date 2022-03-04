@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import productImage from './productImage.png';
 import { loadHomeCategories } from '../../features/categories/categoriesSlice';
 import { loadProducts } from '../../features/products/productsSlice';
 import './Home.scss';
@@ -52,11 +53,11 @@ const Home = () => {
             categories.list.map((category, index) => (
               <div className={`col-11 my-4 col-md-6 col-lg-4 ${index > 2 && 'd-lg-none'}`} key={category.Id}>
                 <div className='categoryCard card p-5'>
-                  <h4 className='fw-bold'>{category.Label}</h4>
+                  <h4 className='fw-bold text-truncate' title={category.Label}>{category.Label}</h4>
                   <img className='p-5' src={category.ImageURL ? category.ImageURL : `http://placeimg.com/640/480?cache=${Math.random()}`} alt={category.Label} />
                   <p>{category.Description}</p>
                   <div className='d-flex justify-content-center'>
-                    <Link to='/catalog' className='btn btn-outline-secondary w-50'>Shop {category.Label}</Link>
+                    <Link to='/catalog' className='btn btn-outline-secondary w-50 text-truncate'>Shop {category.Label}</Link>
                   </div>
                 </div>
               </div>
@@ -131,7 +132,7 @@ const Home = () => {
                 <h3 className='fw-bold'>{products.list[0].Name}</h3>
                 <img
                   className='py-5 w-100'
-                  src={products.list[0].ImageURL}
+                  src={products.list[0].ImageURL ? products.list[0].ImageURL : productImage}
                   alt='featured product'
                 />
                 <p className='fst-italic'>{products.list[0].Description}</p>
@@ -153,12 +154,12 @@ const Home = () => {
             )}
           </div>
           <div className='customCard'>
-            {products.list.length > 0 && (
+            {products.list.length > 1 && (
               <div className='featuredProductCard px-5'>
                 <h3 className='fw-bold'>{products.list[1].Name}</h3>
                 <img
                   className='py-5 w-100'
-                  src={products.list[1].ImageURL}
+                  src={products.list[1].ImageURL ? `${products.list[1].ImageURL}?cache=${Math.random()}` : productImage }
                   alt='featured product'
                 />
                 <p className='fst-italic'>{products.list[1].Description}</p>
