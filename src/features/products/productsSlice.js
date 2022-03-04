@@ -51,18 +51,20 @@ export const loadProducts = createAsyncThunk(
         ? [`filter=eq(${payload.filter.filterField}:'${payload.filter.filterValue}')`]
         : [])
     ];
+    let response;
     if (selectedCategory) {
-      return axios.get(
+      response = await axios.get(
         `${baseUrl}catalog/categories/${
           selectedCategory.Id
         }/products?${params.join('&')}`,
         { headers: REQUEST_HEADERS, cancelToken: source.token }
       );
     } else {
-      return axios.get(`${baseUrl}catalog/products?${params.join('&')}`, {
+      response = await axios.get(`${baseUrl}catalog/products?${params.join('&')}`, {
         headers: REQUEST_HEADERS, cancelToken: source.token
       });
     }
+    return { data: response.data, headers: response.headers };
   }
 );
 
