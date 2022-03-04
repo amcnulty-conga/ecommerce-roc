@@ -3,17 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import productImage from './productImage.png';
 import { loadHomeCategories } from '../../features/categories/categoriesSlice';
-import { loadProducts } from '../../features/products/productsSlice';
 import './Home.scss';
+import { useLoadProducts } from '../../app/hooks/useLoadProducts';
 
 const Home = () => {
   const dispatch = useDispatch();
   const products = useSelector(state => state.products);
   const categories = useSelector(state => state.categories);
+  const loadProds = useLoadProducts();
 
   useEffect(() => {
-    dispatch(loadProducts({sort: '', filter: ''}));
-    dispatch(loadHomeCategories())
+    loadProds({sort: '', filter: ''});
+    dispatch(loadHomeCategories());
   }, [dispatch]);
 
   return (

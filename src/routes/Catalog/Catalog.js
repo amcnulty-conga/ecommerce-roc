@@ -4,7 +4,7 @@ import ErrorBoundary from '../../components/ErrorBoundary/ErrorBoundary';
 import Pagination from '../../features/pagination/Pagination';
 import ProductCard from '../../features/products/ProductCard/ProductCard';
 import ProductCardSkeleton from '../../features/products/ProductCardSkeleton/ProductCardSkeleton';
-import { loadProducts, productSortChange, productFamilyChange, selectProductFamily, selectSortText } from '../../features/products/productsSlice';
+import { productSortChange, productFamilyChange, selectProductFamily, selectSortText } from '../../features/products/productsSlice';
 import {
   Dropdown,
   DropdownItem,
@@ -12,6 +12,7 @@ import {
   DropdownToggle
 } from 'reactstrap';
 import './Catalog.scss';
+import { useLoadProducts } from '../../app/hooks/useLoadProducts';
 
 const Catalog = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -19,10 +20,11 @@ const Catalog = () => {
   const sortText = useSelector(selectSortText);
   const productFamily = useSelector(selectProductFamily);
   const dispatch = useDispatch();
+  const loadProducts = useLoadProducts();
 
   useEffect(() => {
-    dispatch(loadProducts());
-  }, [dispatch, sortText, productFamily]);
+    loadProducts();
+  }, [sortText, productFamily]);
 
   return (
     <div className='Catalog'>

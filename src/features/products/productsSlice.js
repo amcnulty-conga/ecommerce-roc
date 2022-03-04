@@ -16,7 +16,7 @@ const initialState = {
   sortText: '',
   productFamily: ''
 };
-let source;
+
 /**
  * When calling loadProducts if no payload is provided the filtering and sorting parameters will be based on the current values in the redux store.
  * To override the query parameters for a one time call without changing values in redux store pass in a payload.
@@ -24,8 +24,10 @@ let source;
 export const loadProducts = createAsyncThunk(
   'products/loadProducts',
   async (payload, { getState, signal }) => {
-    if (source) source.cancel();
-    source = axios.CancelToken.source();
+    const source = axios.CancelToken.source();
+    signal.addEventListener('abort', () => {
+      source.cancel();
+    });
     const {
       products: { paginationData, sortText, productFamily },
       categories: { selectedCategory }

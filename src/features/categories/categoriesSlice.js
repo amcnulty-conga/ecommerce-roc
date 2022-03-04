@@ -95,6 +95,8 @@ export const loadTopCategories = createAsyncThunk(
   }
 );
 
+let promise;
+
 export const loadChildCategories = createAsyncThunk(
   'categories/loadCategories',
   async (category = { Id: null }, { dispatch }) => {
@@ -103,7 +105,10 @@ export const loadChildCategories = createAsyncThunk(
       dispatch(setSelectedCategory(categoriesHistoryList.last().getCategory()));
     }
     const { Id } = category;
-    dispatch(loadProducts());
+    if (promise) promise.abort();
+    setTimeout(() => {
+      promise = dispatch(loadProducts());
+    });
     const response = await fetch(
       `${baseUrl}catalog/categories?filter=eq(AncestorId:${`'${Id}'`})`,
       {
@@ -133,7 +138,10 @@ export const loadParentCategories = createAsyncThunk(
           : null
       )
     );
-    dispatch(loadProducts());
+    if (promise) promise.abort();
+    setTimeout(() => {
+      promise = dispatch(loadProducts());
+    });
     const payload = response.json();
     return payload;
   }

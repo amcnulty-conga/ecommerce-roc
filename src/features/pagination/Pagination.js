@@ -1,7 +1,8 @@
 import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLoadProducts } from '../../app/hooks/useLoadProducts';
 import { debounce } from '../../util/helpers';
-import { loadProducts, perPageChange } from '../products/productsSlice';
+import { perPageChange } from '../products/productsSlice';
 import './Pagination.scss';
 
 const Pagination = () => {
@@ -9,9 +10,10 @@ const Pagination = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [perPageLocal, setPerPageLocal] = useState(paginationData.perPage);
   const dispatch = useDispatch();
+  const loadProducts = useLoadProducts();
 
   const debouncedEvent = useCallback(
-    debounce(() => dispatch(loadProducts()), 500),
+    debounce(() => loadProducts(), 500),
     []
   );
 
@@ -30,7 +32,7 @@ const Pagination = () => {
         disabled={currentPage === 1}
         onClick={() => {
           setCurrentPage(currentPage - 1);
-          dispatch(loadProducts({ page: currentPage - 1 }));
+          loadProducts({ page: currentPage - 1 });
         }}
       >
         <cc-icon name='fas chevron-left'></cc-icon>
@@ -43,8 +45,8 @@ const Pagination = () => {
         max={numberOfPages}
         onChange={event => {
           if (event.target.validity.valid) {
-            setCurrentPage(event.target.value);
-            dispatch(loadProducts({ page: event.target.value }));
+            setCurrentPage(Number.parseInt(event.target.value));
+            loadProducts({ page: event.target.value });
           }
         }}
       />
@@ -53,7 +55,7 @@ const Pagination = () => {
         disabled={currentPage === numberOfPages}
         onClick={() => {
           setCurrentPage(currentPage + 1);
-          dispatch(loadProducts({ page: currentPage + 1 }));
+          loadProducts({ page: currentPage + 1 });
         }}
       >
         <cc-icon name='fas chevron-right'></cc-icon>
