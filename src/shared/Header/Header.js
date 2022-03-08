@@ -4,7 +4,7 @@ import './Header.scss';
 const Header = () => {
   return (
     <div className='Header'>
-      <cc-app-bar productName='eCommerce ROC' brand='eCom' userName='Aaron' userEmail='amcnulty@conga.com' userAbbr='AM'></cc-app-bar>
+      <cc-app-bar productName='Catalog' brand='eCom' userName='Aaron' userEmail='amcnulty@conga.com' userAbbr='AM'></cc-app-bar>
     </div>
   );
 };

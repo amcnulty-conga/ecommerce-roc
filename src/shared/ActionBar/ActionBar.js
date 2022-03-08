@@ -16,7 +16,7 @@ const ActionBar = () => {
         <h5 className='ms-4'>{PAGE_ROUTE_TO_DISPLAY_NAME_MAP[location.pathname]}</h5>
         {(location.pathname === '/catalog' && categories.selectedCategory) && <h5>&nbsp;&mdash; {categories.selectedCategory.Label}</h5>}
       </div>
-      <cc-button label='Close'></cc-button>
+      {/* <cc-button label='Close'></cc-button> */}
     </div>
   );
 };
