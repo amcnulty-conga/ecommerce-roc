@@ -17,7 +17,7 @@ function App() {
           <Route path='/' exact element={<Home/>} />
           <Route path='/*' element={
             <>
-              <ActionBar/>
+              {/* <ActionBar/> */}
               <div className='bodyContent d-flex'>
                 <ErrorBoundary>
                   <VerticalNav/>

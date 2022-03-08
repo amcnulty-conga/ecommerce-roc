@@ -14,7 +14,7 @@ const ProductCard = (props) => {
           {
             props.product && props.product.Description
             ?
-            props.product.Description
+            `${props.product.Description.substring(0, 90)}${props.product.Description.length > 90 ? '...' : ''}`
             :
             'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Autem quis ipsam neque error natus magnam harum labore iure.'
           }

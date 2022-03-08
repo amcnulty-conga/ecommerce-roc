@@ -17,14 +17,15 @@ $pageSidePadding: 14px;
 // Header
 $headerHeight: pixel-to-rem(49);
 
-// Action Bar
-$actionBarHeight: pixel-to-rem(58);
+// Action Bar ** (also change the $bodyTopMargin value if you change this) **
+// $actionBarHeight: pixel-to-rem(58);
+$actionBarHeight: pixel-to-rem(0);
 
 // App
 $appHeight: calc(100vh - #{$actionBarHeight});
 
 // Body
-$bodyTopMargin: pixel-to-rem(58);
+$bodyTopMargin: pixel-to-rem(0); // <-- set this number equal to the actionBarHeight number.
 $bodyHeight: calc(100vh - calc(#{$headerHeight} + #{$actionBarHeight}));
 
 // Vertical Nav
