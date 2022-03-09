@@ -1,0 +1,44 @@
+@import 'variables';
+
+.ProductListItem {
+  border-bottom: 1px solid $containerBorder;
+  .productImage {
+    flex-basis: 200px;
+    height: pixel-to-rem(156);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .productNameAndDescription {
+    flex-shrink: 100;
+    margin-right: auto;
+    .productDescription {
+      font-size: pixel-to-rem(13);
+    }
+  }
+  .productPrice {
+    label, span {
+      font-size: pixel-to-rem(12);
+      font-weight: 600;
+    }
+  }
+  .cardControls {
+    flex-basis: 200px;
+    .productCardFooter {
+      label {
+        font-size: pixel-to-rem(12);
+      }
+      cc-input {
+        width: 65px;
+        height: pixel-to-rem(32);
+      }
+      .btn {
+        max-width: calc(50%);
+        height: pixel-to-rem(32);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}

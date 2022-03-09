@@ -1,0 +1,50 @@
+@import 'variables';
+
+$productCardHeight: pixel-to-rem(212);
+$cardPadding: 20px;
+$titleHeight: pixel-to-rem(15);
+$imageHeight: pixel-to-rem(156);
+$content-1-height: pixel-to-rem(20);
+$content-2-height: pixel-to-rem(30);
+
+.ProductListItemSkeleton {
+  // width: $productCardWidth;
+  margin: 8px 0px;
+  height: $productCardHeight;
+  // border-radius: 5px;
+  background-image:
+    linear-gradient(90deg, rgba($pds-space-0, 0) 0, rgba($pds-space-0, .8) 50%, rgba($pds-space-0, 0) 100%),
+    linear-gradient($pds-space-1 $titleHeight, transparent 0),
+    linear-gradient($pds-space-1 $imageHeight, transparent 0),
+    linear-gradient($pds-space-1 $content-1-height, transparent 0),
+    linear-gradient($pds-space-1 $content-2-height, transparent 0),
+    linear-gradient($pds-space-2 $productCardHeight, transparent 0);
+  background-size:
+    200px $productCardHeight,
+    200px $titleHeight,
+    200px $imageHeight,
+    400px $content-1-height,
+    365px $content-2-height,
+    100% 100%;
+  background-position:
+    -150% 0,
+    300px $cardPadding,
+    $cardPadding $cardPadding,
+    300px pixel-to-rem(70),
+    300px pixel-to-rem(120),
+    0 0;
+  background-repeat: no-repeat;
+  animation: loadingProductListItem 1.5s infinite;
+}
+
+@keyframes loadingProductListItem {
+  to {
+    background-position:
+      350% 0,
+      300px $cardPadding,
+      $cardPadding $cardPadding,
+      300px pixel-to-rem(70),
+      300px pixel-to-rem(120),
+      0 0;
+  }
+}

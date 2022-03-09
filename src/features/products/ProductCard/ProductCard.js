@@ -49,7 +49,7 @@ const ProductCard = (props) => {
         <label>{t('productCard.QUANTITY_LABEL')}</label>
         {/* <input className='form-control mx-3' type="number" /> */}
         <cc-input type='number' inputValue='1' style={{paddingTop: '3px'}}></cc-input>
-        <cc-button label={t('common.ADD_TO_CART')} variant='primary'></cc-button>
+        <cc-button label={props.product.ConfigurationType === 'Bundle' ? t('common.CONFIGURE') : t('common.ADD_TO_CART')} variant='primary'></cc-button>
       </div>
     </div>
   );

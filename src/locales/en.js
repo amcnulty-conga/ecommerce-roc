@@ -2,6 +2,7 @@ export const en = {
   translation: {
     common: {
       ADD_TO_CART: 'Add to Cart',
+      CONFIGURE: 'Configure',
       CLONE: 'Clone'
     },
     mainContentTabs: {

@@ -11,6 +11,21 @@
       .productFamilyInput {
         max-width: 160px;
       }
+      .viewToggleButtons {
+        button {
+          color: $pds-primary;
+          border-color: $containerBorder;
+          &:hover {
+            background-color: unset;
+            color: $pds-primary-hover;
+          }
+          &.current {
+            background-color: $pds-primary;
+            border-color: $pds-primary;
+            color: white;
+          }
+        }
+      }
     }
   }
 }

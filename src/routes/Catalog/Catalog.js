@@ -4,7 +4,12 @@ import ErrorBoundary from '../../components/ErrorBoundary/ErrorBoundary';
 import Pagination from '../../features/pagination/Pagination';
 import ProductCard from '../../features/products/ProductCard/ProductCard';
 import ProductCardSkeleton from '../../features/products/ProductCardSkeleton/ProductCardSkeleton';
-import { productSortChange, productFamilyChange, selectProductFamily, selectSortText } from '../../features/products/productsSlice';
+import {
+  productSortChange,
+  productFamilyChange,
+  selectProductFamily,
+  selectSortText
+} from '../../features/products/productsSlice';
 import {
   Dropdown,
   DropdownItem,
@@ -13,9 +18,14 @@ import {
 } from 'reactstrap';
 import './Catalog.scss';
 import { useLoadProducts } from '../../app/hooks/useLoadProducts';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGrip, faListUl } from '@fortawesome/free-solid-svg-icons';
+import ProductListItem from '../../features/products/ProductListItem/ProductListItem';
+import ProductListItemSkeleton from '../../features/products/ProductListItemSkeleton/ProductListItemSkeleton';
 
 const Catalog = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [activeView, setActiveView] = useState('grid');
   const products = useSelector(state => state.products);
   const sortText = useSelector(selectSortText);
   const productFamily = useSelector(selectProductFamily);
@@ -43,7 +53,9 @@ const Catalog = () => {
             <select
               className='productFamilyInput form-select bg-white me-1'
               value={productFamily}
-              onChange={event => dispatch(productFamilyChange((event.target.value)))}
+              onChange={event =>
+                dispatch(productFamilyChange(event.target.value))
+              }
             >
               <option value=''>Product Family</option>
               <option value='Software'>Software</option>
@@ -62,19 +74,43 @@ const Catalog = () => {
                 <cc-button icon='fas filter' variant='tertiary'></cc-button>
               </DropdownToggle>
               <DropdownMenu>
-                <DropdownItem onClick={() => dispatch(productSortChange('Name Asc'))}>
+                <DropdownItem
+                  onClick={() => dispatch(productSortChange('Name Asc'))}
+                >
                   Name Asc
                 </DropdownItem>
-                <DropdownItem onClick={() => dispatch(productSortChange('Name Desc'))}>
+                <DropdownItem
+                  onClick={() => dispatch(productSortChange('Name Desc'))}
+                >
                   Name Desc
                 </DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </div>
-          <div className='col-12 col-lg-8 d-flex justify-content-lg-end order-0 order-lg-1'>
+          <div className='col-12 col-lg-8 d-flex justify-content-lg-end align-items-center order-0 order-lg-1'>
             <ErrorBoundary>
               <Pagination />
             </ErrorBoundary>
+            <div className='viewToggleButtons btn-group ms-2'>
+              <button
+                title='table'
+                className={`btn btn-outline-secondary ${
+                  activeView === 'table' ? 'current' : ''
+                }`}
+                onClick={() => setActiveView('table')}
+              >
+                <FontAwesomeIcon icon={faListUl} />
+              </button>
+              <button
+                title='grid'
+                className={`btn btn-outline-secondary ${
+                  activeView === 'grid' ? 'current' : ''
+                }`}
+                onClick={() => setActiveView('grid')}
+              >
+                <FontAwesomeIcon icon={faGrip} />
+              </button>
+            </div>
           </div>
         </div>
         {sortText && (
@@ -89,41 +125,64 @@ const Catalog = () => {
           </span>
         )}
         <div className='row'>
-          {products.isLoading ? (
-            <>
-              <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
-                <ProductCardSkeleton />
-              </div>
-              <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
-                <ProductCardSkeleton />
-              </div>
-              <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
-                <ProductCardSkeleton />
-              </div>
-              <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
-                <ProductCardSkeleton />
-              </div>
-              <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
-                <ProductCardSkeleton />
-              </div>
-              <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
-                <ProductCardSkeleton />
-              </div>
-            </>
-          ) : (
-            products.list.map(product => (
-              <div
-                className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'
-                key={product.Id}
-              >
-                <ProductCard
-                  product={product}
-                  productName={product.Name}
-                  productImage={product.ImageURL}
-                />
-              </div>
-            ))
-          )}
+          {
+            activeView === 'grid'
+            ?
+              products.isLoading ? (
+                <>
+                  <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
+                    <ProductCardSkeleton />
+                  </div>
+                  <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
+                    <ProductCardSkeleton />
+                  </div>
+                  <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
+                    <ProductCardSkeleton />
+                  </div>
+                  <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
+                    <ProductCardSkeleton />
+                  </div>
+                  <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
+                    <ProductCardSkeleton />
+                  </div>
+                  <div className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'>
+                    <ProductCardSkeleton />
+                  </div>
+                </>
+              ) : (
+                products.list.map(product => (
+                  <div
+                    className='col-12 col-lg-6 col-xxl-4 d-flex justify-content-center my-3'
+                    key={product.Id}
+                  >
+                    <ProductCard
+                      product={product}
+                      productName={product.Name}
+                      productImage={product.ImageURL}
+                    />
+                  </div>
+                ))
+              )
+            :
+              products.isLoading ? (
+                <>
+                  <ProductListItemSkeleton/>
+                  <ProductListItemSkeleton/>
+                  <ProductListItemSkeleton/>
+                  <ProductListItemSkeleton/>
+                  <ProductListItemSkeleton/>
+                  <ProductListItemSkeleton/>
+                </>
+              ) : (
+                products.list.map(product => (
+                  <ProductListItem
+                    product={product}
+                    productName={product.Name}
+                    productImage={product.ImageURL}
+                  />
+                ))
+              )
+          }
           {!products.isLoading && products.list.length === 0 && (
             <p>{products.errorMessage}</p>
           )}
