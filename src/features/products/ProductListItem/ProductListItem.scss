@@ -2,6 +2,9 @@
 
 .ProductListItem {
   border-bottom: 1px solid $containerBorder;
+  &:last-child {
+    border-bottom: none;
+  }
   .productImage {
     flex-basis: 200px;
     height: pixel-to-rem(156);
