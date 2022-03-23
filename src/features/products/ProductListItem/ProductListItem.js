@@ -21,8 +21,8 @@ const ProductListItem = props => {
         <span className='fw-bold'>{props.productName}</span>
         <span className="productDescription">
           {props.product && props.product.Description
-            ? `${props.product.Description.substring(0, 90)}${
-                props.product.Description.length > 90 ? '...' : ''
+            ? `${props.product.Description.substring(0, 990)}${
+                props.product.Description.length > 990 ? '...' : ''
               }`
             : 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Autem quis ipsam neque error natus magnam harum labore iure.'}
         </span>

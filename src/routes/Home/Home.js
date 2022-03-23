@@ -55,7 +55,7 @@ const Home = () => {
               <div className={`col-11 my-4 col-md-6 col-lg-4 ${index > 2 && 'd-lg-none'}`} key={category.Id}>
                 <div className='categoryCard card p-5'>
                   <h4 className='fw-bold text-truncate' title={category.Label}>{category.Label}</h4>
-                  <img className='p-5' src={category.ImageURL ? category.ImageURL : `http://placeimg.com/640/480?cache=${Math.random()}`} alt={category.Label} />
+                  <img className='p-5' src={category.ImageURL ? category.ImageURL : `http://placeimg.com/640/480/tech?cache=${Math.random()}`} alt={category.Label} />
                   <p>{category.Description}</p>
                   <div className='d-flex justify-content-center'>
                     <Link to='/catalog' className='btn btn-outline-secondary w-50 text-truncate'>Shop {category.Label}</Link>
@@ -160,7 +160,7 @@ const Home = () => {
                 <h3 className='fw-bold'>{products.list[1].Name}</h3>
                 <img
                   className='py-5 w-100'
-                  src={products.list[1].ImageURL ? `${products.list[1].ImageURL}?cache=${Math.random()}` : productImage }
+                  src={products.list[1].ImageURL ? products.list[1].ImageURL : productImage }
                   alt='featured product'
                 />
                 <p className='fst-italic'>{products.list[1].Description}</p>
