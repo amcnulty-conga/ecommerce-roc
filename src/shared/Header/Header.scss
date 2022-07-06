@@ -2,4 +2,12 @@
 
 .Header {
   height: $headerHeight;
+
+  .selectedPriceListInput {
+    position: absolute;
+    max-width: 260px;
+    top: pixel-to-rem(8);
+    right: 150px;
+    z-index: 100;
+  }
 }

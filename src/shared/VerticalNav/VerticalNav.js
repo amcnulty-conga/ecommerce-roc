@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './VerticalNav.scss';
 import { faChevronLeft, faChevronRight, faCog, faHome, faListDots, faSearch, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { categoriesHistoryList, loadChildCategories, loadParentCategories, loadTopCategories, selectedCategory as selectedCategorySelector } from '../../features/categories/categoriesSlice';
+import { categoriesHistoryList, loadChildCategories, loadParentCategories, selectedCategory as selectedCategorySelector } from '../../features/categories/categoriesSlice';
 import CategoryButton from '../../features/categories/CategoryButton/CategoryButton';
 
 const VerticalNav = () => {
@@ -14,10 +14,6 @@ const VerticalNav = () => {
   const selectedCategory = useSelector(selectedCategorySelector);
   const dispatch = useDispatch();
   const location = useLocation();
-
-  useEffect(() => {
-    dispatch(loadTopCategories());
-  }, [dispatch]);
 
   return (
     <div className={`VerticalNav pt-3 ${pinned && 'pinned'}`}>

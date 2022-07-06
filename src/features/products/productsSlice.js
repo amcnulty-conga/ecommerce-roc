@@ -54,13 +54,13 @@ export const loadProducts = createAsyncThunk(
     let response;
     if (selectedCategory) {
       response = await axios.get(
-        `${baseUrl}catalog/categories/${
+        `${baseUrl}categories/${
           selectedCategory.Id
         }/products?${params.join('&')}`,
         { headers: REQUEST_HEADERS, cancelToken: source.token }
       );
     } else {
-      response = await axios.get(`${baseUrl}catalog/products?${params.join('&')}`, {
+      response = await axios.get(`${baseUrl}products?${params.join('&')}`, {
         headers: REQUEST_HEADERS, cancelToken: source.token
       });
     }

@@ -13,14 +13,6 @@ export const SORT_TEXT_TO_PARAM_MAP = {
   }
 };
 
-let priceListId = localStorage.getItem('priceListId');
-
-let index = Number.parseInt(localStorage.getItem('priceList'));
-if (Number.isNaN(index)) {
-  localStorage.setItem('priceList', '1');
-  index = 1;
-}
-
 const priceListIdsList = [
   '327c354a-eef5-4254-ad8b-63a9031278da',
   '5ca57058-361b-479b-a4d3-399a7faf23da',
@@ -32,15 +24,11 @@ const priceListIdsList = [
   'e0c3f724-5799-40b9-8c7d-b0ae96192755'
 ];
 
-if (!priceListId) {
-  priceListId = priceListIdsList[index];
-  localStorage.setItem('priceListId', priceListId);
-}
-
 export const REQUEST_HEADERS = {
-  "UserId" : "802e9a13-5e5b-4c96-92ab-820cf385b620",
-  "orgname" : "conga-rcc-staging",
-  'PriceListId': priceListId
+  // "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjAyRDhBQzE4QTIzNEI4QUEwRDM2NzVEOEUxNTEzMjY5NThCMEU3OThSUzI1NiIsInR5cCI6ImF0K2p3dCIsIng1dCI6IkF0aXNHS0kwdUtvTk5uWFk0VkV5YVZpdzU1ZyJ9.eyJuYmYiOjE2NTcxMzkyNTMsImV4cCI6MTY1NzE0Mjg1MywiaXNzIjoiaHR0cHM6Ly9sb2dpbi5jb25nYWNsb3VkLmlvL2ludC9hcGkvdjEvYXV0aCIsImNsaWVudF9pZCI6InJscC1kZXYtY2MiLCJqdGkiOiIzQkNGMkE3RUJFODQ5QkRGNTQ0QkU5MkRCRjA0OEFFRCIsImlhdCI6MTY1NzEzOTI1Mywic2NvcGUiOlsiQXV0aC5BcGkuUmVhZCJdfQ.i7dS2lcxBk2ela0KxQU1U1gSza9cHlgfsPgQ0zx1XRavXxhCyB_2pGPa1vyJIiYqXQZdf0H-km5o6yzQjnezamPC-1YTF8KhDhM1-D6jsivtekyndoFghlw5ttZb7KljaClnpk5zJgo12rhcTe9IHjT18q6hfbSNk0dDdjyFl6rcrqO5HT-qK_HqoKXrwVela67QAfA_6kdHggqqFwOoOv2r9q9zQSigMX-yTCdq_AaAcZg6BOecg9Eetw5NkYg1hc3xbNYv0wB-ONTzyR0s4xR88dRJ1ArP4cgYagydxparrPZEjKH6sQnoyWAXJmpAOmICb5UQHfkODqopBsRbPg",
+  UserId: 'ddfec712-8827-4684-8287-1373e4f1f43d',
+  OrganizationId: 'rlp-dev',
+  orgname: 'rlp-dev'
 };
 
 export const debounce = (callback, delay) => {

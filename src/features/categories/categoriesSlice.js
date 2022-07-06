@@ -71,27 +71,34 @@ const initialState = {
 
 export const loadHomeCategories = createAsyncThunk(
   'categories/loadHomeCategories',
-  async () => {
-    const response = await fetch(
-      `${baseUrl}catalog/categories?limit=4`,
-      {
-        headers: new Headers({ ...REQUEST_HEADERS, PriceListId: '' })
-      }
-    );
-    return response.json();
+  async (payload, { signal }) => {
+    const source = axios.CancelToken.source();
+    signal.addEventListener('abort', () => {
+      source.cancel();
+    });
+    const response = await axios.get(`${baseUrl}categories?limit=4`, {
+      headers: REQUEST_HEADERS,
+      cancelToken: source.token
+    });
+    return { data: response.data, headers: response.headers };
   }
 );
 
 export const loadTopCategories = createAsyncThunk(
   'categories/loadTopCategories',
-  async () => {
-    const response = await fetch(
-      `${baseUrl}catalog/categories?filter=eq(AncestorId:null)`,
+  async (payload, { signal }) => {
+    const source = axios.CancelToken.source();
+    signal.addEventListener('abort', () => {
+      source.cancel();
+    });
+    const response = await axios.get(
+      `${baseUrl}categories?filter=eq(AncestorId:null)&limit=30`,
       {
-        headers: new Headers(REQUEST_HEADERS)
+        headers: REQUEST_HEADERS,
+        cancelToken: source.token
       }
     );
-    return response.json();
+    return { data: response.data, headers: response.headers };
   }
 );
 
@@ -99,7 +106,11 @@ let promise;
 
 export const loadChildCategories = createAsyncThunk(
   'categories/loadCategories',
-  async (category = { Id: null }, { dispatch }) => {
+  async (category = { Id: null }, { dispatch, signal }) => {
+    const source = axios.CancelToken.source();
+    signal.addEventListener('abort', () => {
+      source.cancel();
+    });
     if (category) {
       categoriesHistoryList.add(new ListNode(category));
       dispatch(setSelectedCategory(categoriesHistoryList.last().getCategory()));
@@ -109,25 +120,31 @@ export const loadChildCategories = createAsyncThunk(
     setTimeout(() => {
       promise = dispatch(loadProducts());
     });
-    const response = await fetch(
-      `${baseUrl}catalog/categories?filter=eq(AncestorId:${`'${Id}'`})`,
+    const response = await axios.get(
+      `${baseUrl}categories?filter=eq(AncestorId:${`'${Id}'`})`,
       {
-        headers: new Headers(REQUEST_HEADERS)
+        headers: REQUEST_HEADERS,
+        cancelToken: source.token
       }
     );
-    return response.json();
+    return { data: response.data, headers: response.headers };
   }
 );
 
 export const loadParentCategories = createAsyncThunk(
   'categories/loadParentCategories',
-  async (category = { AncestorId: null }, { dispatch }) => {
-    const response = await fetch(
-      `${baseUrl}catalog/categories?filter=eq(AncestorId:${
+  async (category = { AncestorId: null }, { dispatch, signal }) => {
+    const source = axios.CancelToken.source();
+    signal.addEventListener('abort', () => {
+      source.cancel();
+    });
+    const response = await axios.get(
+      `${baseUrl}categories?filter=eq(AncestorId:${
         category.AncestorId ? `'${category.AncestorId}'` : null
       })`,
       {
-        headers: new Headers(REQUEST_HEADERS)
+        headers: REQUEST_HEADERS,
+        cancelToken: source.token
       }
     );
     categoriesHistoryList.removeLast();
@@ -142,8 +159,7 @@ export const loadParentCategories = createAsyncThunk(
     setTimeout(() => {
       promise = dispatch(loadProducts());
     });
-    const payload = response.json();
-    return payload;
+    return { data: response.data, headers: response.headers };
   }
 );
 
@@ -154,7 +170,7 @@ const pendingReducer = (state, action) => {
 
 const fulfilledReducer = (state, action) => {
   state.isLoading = false;
-  state.list = action.payload;
+  state.list = action.payload.data ? action.payload.data : [];
 };
 
 const rejectedReducer = (state, action) => {
